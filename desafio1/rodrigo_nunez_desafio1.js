@@ -31,6 +31,11 @@ class ProductManager {
         }
     }
 
+
+    deleteProduct() {
+        const deleteProduct = [productManager];
+    }
+
     checkProduct(product){
         return !this.getCode(product.code) && product.title && product.description && product.price && product.thumbnail && product.stock
     }
