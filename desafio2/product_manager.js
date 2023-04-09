@@ -32,8 +32,12 @@ class ProductManager {
     }
 
 
-    deleteProduct() {
-        const deleteProduct = [productManager];
+    borrarItemPorId = (product) => {
+        product.forEach((product, index) => {
+            if (this.generateId === id) {
+                product.splice(index, 1);
+            }
+        })
     }
 
     checkProduct(product){
