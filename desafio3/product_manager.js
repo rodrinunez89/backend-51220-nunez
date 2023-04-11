@@ -1,4 +1,4 @@
-const fs = require ('ProductManager'); 
+const fs = require ('./app'); 
 
 class Product{
     constructor(product){
@@ -85,7 +85,6 @@ class ProductManager {
 
 
 
-manager.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
 
 // const productManager = new ProductManager();
 // console.log(productManager.getProducts());

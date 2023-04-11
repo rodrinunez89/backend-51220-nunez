@@ -1,15 +1,15 @@
+
 const express = require ('express');
-const {ProductManager} = require('./product_manager');
+const ProductManager = require('./product_manager');
 
 // CREAMOS EL PUERTO
 
 const puerto = 8080;
 
+
+const manager = new Product ('./products.json');
+
 const server = express();
-
-server.use(express.urlencoded({ extended: true }));
-
-const manager = new ProductManager
 
 // UTILIZO GET CON UN ENDPOINT
 server.get('/', (req,res)=>{
@@ -18,8 +18,8 @@ server.get('/', (req,res)=>{
 });
 
 server.get('/products', (req,res)=>{
-    const verproduct = manager.getProducts();
-    res.send(verproduct);
+   
+    res.send(manager.getProducts());
 });
 
 
@@ -27,3 +27,7 @@ server.get('/products/:pid', (req,res)=>{
     const verProductId = manager.getProductsById(req.params.pid);
     res.send(verProductId);
 })
+
+app.get('/products', (req, res) => {
+    res.send(PM.getProducts());
+  })
