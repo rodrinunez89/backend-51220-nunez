@@ -1,3 +1,5 @@
+const fs = require ('ProductManager'); 
+
 class Product{
     constructor(product){
         this.title = product.title;
@@ -31,9 +33,12 @@ class ProductManager {
         }
     }
 
-
-    deleteProduct() {
-        const deleteProduct = [productManager];
+    deleteItemById(productId){
+        this.products.forEach((product, index)=>{
+            if (product.id === productId) {
+                this.products.splice(index, 1);
+        }
+    })
     }
 
     checkProduct(product){
@@ -57,6 +62,19 @@ class ProductManager {
                 }
         })
     }
+    
+
+    updateProduct = (id, campo, nuevoValor) => {
+        const indice = this.products.findIndex(obj => obj.id === id);
+    
+        if (indice !== -1) { // si devuelve -1 significa que no encontró coincidencia en el id
+            productos[indice][campo] = nuevoValor;
+        }
+        else {
+            console.error('not found id:', id);
+        }
+    }
+
 
     generateId(){
         return this.products.length + 1;
@@ -64,26 +82,31 @@ class ProductManager {
 }
 
 
-const productManager = new ProductManager();
-console.log(productManager.getProducts());
-productManager.addProduct({
-    title: 'producto prueba',
-    description:'Este es un producto prueba',
-    price:'200',
-    thumbnail:'Sin imagen',
-    code:'abc123',
-    stock:25
-})
-console.log(productManager.getProducts());
 
-productManager.addProduct({
-    title: 'producto prueba',
-    description:'Este es un producto prueba',
-    price:'200',
-    thumbnail:'Sin imagen',
-    code:'abc123',
-    stock:25
-})
 
-console.log(productManager.getProductsById(1))
-productManager.getProductsById(4)
+
+manager.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
+
+// const productManager = new ProductManager();
+// console.log(productManager.getProducts());
+// productManager.addProduct({
+//     title: 'producto prueba',
+//     description:'Este es un producto prueba',
+//     price:'200',
+//     thumbnail:'Sin imagen',
+//     code:'abc123',
+//     stock:25
+// })
+// console.log(productManager.getProducts());
+
+// productManager.addProduct({
+//     title: 'producto prueba',
+//     description:'Este es un producto prueba',
+//     price:'200',
+//     thumbnail:'Sin imagen',
+//     code:'abc123',
+//     stock:25
+// })
+
+// console.log(productManager.getProductsById(1))
+// productManager.getProductsById(4)

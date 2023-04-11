@@ -2,10 +2,6 @@ const fs = require ('fs');
 
 const puerto = 8080;
 
-const server = express();
-
-
-
 
 class Product{
     constructor(product){
