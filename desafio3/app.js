@@ -1,7 +1,5 @@
-const fs = require('fs');
-
 const express = require ('express');
-const {ProductManager} = require('./products.json');
+const {ProductManager} = require('./product_manager');
 
 // CREAMOS EL PUERTO
 
@@ -15,6 +13,7 @@ const manager = new ProductManager
 
 // UTILIZO GET CON UN ENDPOINT
 server.get('/', (req,res)=>{
+    console.log('Server response');
     res.send('Servidor Express');
 });
 
