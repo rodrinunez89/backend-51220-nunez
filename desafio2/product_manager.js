@@ -1,3 +1,12 @@
+const fs = require ('fs');
+
+const puerto = 8080;
+
+const server = express();
+
+
+
+
 class Product{
     constructor(product){
         this.title = product.title;
@@ -31,13 +40,12 @@ class ProductManager {
         }
     }
 
-
-    borrarItemPorId = (product) => {
-        product.forEach((product, index) => {
-            if (this.generateId === id) {
-                product.splice(index, 1);
-            }
-        })
+    deleteItemById(productId){
+        this.products.forEach((product, index)=>{
+            if (product.id === productId) {
+                this.products.splice(index, 1);
+        }
+    })
     }
 
     checkProduct(product){
@@ -68,26 +76,31 @@ class ProductManager {
 }
 
 
-const productManager = new ProductManager();
-console.log(productManager.getProducts());
-productManager.addProduct({
-    title: 'producto prueba',
-    description:'Este es un producto prueba',
-    price:'200',
-    thumbnail:'Sin imagen',
-    code:'abc123',
-    stock:25
-})
-console.log(productManager.getProducts());
+const manager = new ProductManager('./product.json');
 
-productManager.addProduct({
-    title: 'producto prueba',
-    description:'Este es un producto prueba',
-    price:'200',
-    thumbnail:'Sin imagen',
-    code:'abc123',
-    stock:25
-})
 
-console.log(productManager.getProductsById(1))
-productManager.getProductsById(4)
+manager.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
+
+// const productManager = new ProductManager();
+// console.log(productManager.getProducts());
+// productManager.addProduct({
+//     title: 'producto prueba',
+//     description:'Este es un producto prueba',
+//     price:'200',
+//     thumbnail:'Sin imagen',
+//     code:'abc123',
+//     stock:25
+// })
+// console.log(productManager.getProducts());
+
+// productManager.addProduct({
+//     title: 'producto prueba',
+//     description:'Este es un producto prueba',
+//     price:'200',
+//     thumbnail:'Sin imagen',
+//     code:'abc123',
+//     stock:25
+// })
+
+// console.log(productManager.getProductsById(1))
+// productManager.getProductsById(4)
