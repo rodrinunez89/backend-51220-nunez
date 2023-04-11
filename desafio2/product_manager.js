@@ -69,6 +69,19 @@ class ProductManager {
                 }
         })
     }
+    
+
+    updateProduct = (id, campo, nuevoValor) => {
+        const indice = this.products.findIndex(obj => obj.id === id);
+    
+        if (indice !== -1) { // si devuelve -1 significa que no encontró coincidencia en el id
+            productos[indice][campo] = nuevoValor;
+        }
+        else {
+            console.error('not found id:', id);
+        }
+    }
+
 
     generateId(){
         return this.products.length + 1;
