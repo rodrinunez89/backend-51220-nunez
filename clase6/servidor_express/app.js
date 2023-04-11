@@ -4,6 +4,7 @@ const puerto = 8080;
 
 const server = express();
 
+server.use(express.json);
 server.use(express.urlencoded({ extended: true }));
 
 server.get('/', (req,res)=>{

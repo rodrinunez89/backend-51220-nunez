@@ -8,7 +8,7 @@ const puerto = 8080;
 
 
 const manager = new Product ('./products.json');
-
+server.use(express.json);
 const server = express();
 
 // UTILIZO GET CON UN ENDPOINT
@@ -25,9 +25,9 @@ server.get('/products', (req,res)=>{
 
 server.get('/products/:pid', (req,res)=>{
     const verProductId = manager.getProductsById(req.params.pid);
+    let limit = parseInt(req.query.limit)
+    const productosLimitados = productos.slice(0,limit);
+    res.send(productosLimitados);
     res.send(verProductId);
 })
 
-app.get('/products', (req, res) => {
-    res.send(PM.getProducts());
-  })
