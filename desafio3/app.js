@@ -18,16 +18,17 @@ server.get('/', (req,res)=>{
 });
 
 server.get('/products', (req,res)=>{
-   
+    const verProductId = manager.getProductsById(req.params.pid);
     res.send(manager.getProducts());
+    res.send(verProductId);
 });
 
 
 server.get('/products/:pid', (req,res)=>{
-    const verProductId = manager.getProductsById(req.params.pid);
+    
     let limit = parseInt(req.query.limit)
     const productosLimitados = productos.slice(0,limit);
     res.send(productosLimitados);
-    res.send(verProductId);
+    
 })
 
