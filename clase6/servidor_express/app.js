@@ -15,6 +15,7 @@ server.get('/', (req,res)=>{
 // habilito un endpoint para solicitar get a /saludo
 server.get('/saludo', (req,res)=>{
     res.send('Esta es el saludo del servidor Express');
+    //res.status(200).send('Esta es el servidor');
 });
 
 
