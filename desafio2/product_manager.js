@@ -32,7 +32,7 @@ class ProductManager {
                 id: this.generateId()
             }));
             console.log('Product added:',product);
-            await fs.promises.writeFileSync(archivo, JSON.stringify(product, 'utf-8'));
+            await fs.promises.writeFile(archivo, JSON.stringify(product, 'utf-8'));
             
         } else {
             console.error('Error on add product', product);
@@ -40,9 +40,10 @@ class ProductManager {
     }
 
     consultarusuario = async ()=>{
-        const leerproduct = await fs.promises.readFileSync(archivo ,'utf-8')
+        const leerproduct = await fs.promises.readFile(archivo ,'utf-8')
         const leerproductJSON = JSON.parse(leerproduct);
         console.log(leerproductJSON);
+        consultarusuario ();
     }
 
     deleteItemById(productId){
