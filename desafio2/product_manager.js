@@ -100,8 +100,8 @@ class ProductManager {
 const productNuevo = new ProductManager();
 
 
-productNuevo.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
-
+//productNuevo.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
+productNuevo.addProduct({title: 'jeans', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 20})
 // const productManager = new ProductManager();
 // console.log(productManager.getProducts());
 // productManager.addProduct({
