@@ -31,10 +31,13 @@ class ProductManager {
                 id: this.generateId()
             }));
             console.log('Product added:',product);
+            fs.writeFileSync('./productos.json', JSON.stringify(products, 'utf-8'));
         } else {
             console.error('Error on add product', product);
         }
     }
+
+    
 
     deleteItemById(productId){
         this.products.forEach((product, index)=>{
@@ -85,7 +88,7 @@ class ProductManager {
 }
 
 
-const manager = new ProductManager('./product.json');
+const manager = new ProductManager();
 
 
 manager.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
