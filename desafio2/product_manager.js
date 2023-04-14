@@ -2,6 +2,7 @@ const fs = require ('fs');
 
 const puerto = 8080;
 
+const archivo = './package.json';
 
 class Product{
     constructor(product){
@@ -19,7 +20,7 @@ class ProductManager {
        this.products = [];
     }
     
-    addProduct(product){
+    async addProduct(product) {
         if(this.checkProduct(product)){
             this.products.push(new Product({
                 title: product.title,
@@ -31,13 +32,18 @@ class ProductManager {
                 id: this.generateId()
             }));
             console.log('Product added:',product);
-            fs.writeFileSync('./productos.json', JSON.stringify(products, 'utf-8'));
+            await fs.promises.writeFileSync(archivo, JSON.stringify(product, 'utf-8'));
+            
         } else {
             console.error('Error on add product', product);
         }
     }
 
-    
+    consultarusuario = async ()=>{
+        const leerproduct = await fs.promises.readFileSync(archivo ,'utf-8')
+        const leerproductJSON = JSON.parse(leerproduct);
+        console.log(leerproductJSON);
+    }
 
     deleteItemById(productId){
         this.products.forEach((product, index)=>{
@@ -85,13 +91,15 @@ class ProductManager {
     generateId(){
         return this.products.length + 1;
     }
+
+
 }
 
 
-const manager = new ProductManager();
+const productNuevo = new ProductManager();
 
 
-manager.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
+productNuevo.addProduct({title: 'remera', description: 'blanca lisa' , price: '85', thumbnail: 'sin imagen', stock: 25})
 
 // const productManager = new ProductManager();
 // console.log(productManager.getProducts());
