@@ -46,12 +46,13 @@ class ProductManager {
         consultarusuario ();
     }
 
-    deleteItemById(productId){
+    async deleteItemById(productId){
         this.products.forEach((product, index)=>{
             if (product.id === productId) {
-                this.products.splice(index, 1);
-        }
-    })
+                this.products.splice(index, 1)
+                
+        }})
+    await fs.promises.writeFile(archivo, JSON.stringify(product, 'utf-8'));
     }
 
     checkProduct(product){
@@ -77,11 +78,12 @@ class ProductManager {
     }
     
 
-    updateProduct = (id, campo, nuevoValor) => {
+     updateProduct = async (id, campo, nuevoValor) => {
         const indice = this.products.findIndex(obj => obj.id === id);
     
         if (indice !== -1) { // si devuelve -1 significa que no encontró coincidencia en el id
             productos[indice][campo] = nuevoValor;
+            await fs.promises.writeFile(archivo, JSON.stringify(product, 'utf-8'));
         }
         else {
             console.error('not found id:', id);
