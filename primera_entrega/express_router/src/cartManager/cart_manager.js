@@ -5,6 +5,20 @@ class CartManager {
     constructor(){
         this.path = path.resolve(__dirname, 'cart.json');
     }
+
+    async addCart(products) {
+        const carts = await this.getCarts();
+        if(Array.isArray(products)){
+            carts.push({
+                "id": await this.generateId(),
+                "products": products
+            })
+            await fs.writeFile(this.path, JSON.stringify(carts, 'utf-8', 4));
+            return true
+        } else {
+            return false
+        }
+    }
     
     async addProductToCart(id, productID, quantity) {
         const cart = await this.getCartsById(id);
@@ -28,20 +42,6 @@ class CartManager {
             return cart
         } else {
             return false;
-        }
-    }
-
-    async addCart(products) {
-        const carts = await this.getCarts();
-        if(Array.isArray(products)){
-            carts.push({
-                "id": await this.generateId(),
-                "products": products
-            })
-            await fs.writeFile(this.path, JSON.stringify(carts, 'utf-8', 4));
-            return true
-        } else {
-            return false
         }
     }
 

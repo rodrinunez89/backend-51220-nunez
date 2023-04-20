@@ -39,7 +39,8 @@ class ProductManager {
             if (product.id === parseInt(productId)) {
                 products.splice(index, 1)
                 found = true;
-        }})
+            }
+        });
         if(found){
             await fs.writeFile(this.path, JSON.stringify(products, 'utf-8', 4));
         }
