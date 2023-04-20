@@ -33,9 +33,9 @@ router.get('/:pid', (req,res)=>{
 router.post('/', (req,res)=>{
     const product = req.body;
     
-    const addproduct = productManager.addProduct(product);
-    if(addproduct){
-        res.send({status:200, message:`Product added: ${addproduct}`})
+    const addProduct = productManager.addProduct(product);
+    if(addProduct){
+        res.send({status:200, message:`Product added: ${addProduct}`})
     } else {
         res.send({status:400, message:"Product not added"})
     }
@@ -57,6 +57,16 @@ router.put('/:pid', async (req,res)=>{
     } else {
         const updateProduct = productManager.updateProduct(id, product);
         res.send({status:200, message:"Product updated"})
+    }
+});
+
+router.delete('/:pid', async (req,res)=>{
+    const id = req.params.pid;
+    const deletedProduct = await productManager.deleteItemById(id);
+    if(deletedProduct){
+        res.send({status:200, message:"Product deleted"})
+    } else {
+        res.send({status:400, message:"Product nof found"})
     }
 });
 

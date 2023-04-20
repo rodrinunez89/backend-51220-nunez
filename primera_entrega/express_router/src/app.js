@@ -9,15 +9,13 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.use('/api/products',productsRouter);
-server.use('/api/cart',cartRouter);
+server.use('/api/carts',cartRouter);
 
 
 
 server.listen (puerto, () => {
-
     console.log(`Servidor iniciado en puerto ${puerto}`)
-}
-)
+})
 
 
 

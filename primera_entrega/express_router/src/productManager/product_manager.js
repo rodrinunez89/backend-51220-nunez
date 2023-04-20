@@ -22,9 +22,6 @@ class ProductManager {
                     id: await this.generateId()
                 }
             );
-            
-            console.log('Product added:',product);
-            console.log(products);
             await fs.writeFile(this.path, JSON.stringify(products, 'utf-8', 4));
             return true
         } else {
@@ -36,12 +33,17 @@ class ProductManager {
     
 
     async deleteItemById(productId){
-        this.products.forEach((product, index)=>{
-            if (product.id === productId) {
-                this.products.splice(index, 1)
-                
+        const products = await this.getProducts();
+        let found = false;
+        products.forEach((product, index)=>{
+            if (product.id === parseInt(productId)) {
+                products.splice(index, 1)
+                found = true;
         }})
-    await fs.writeFile(this.path, JSON.stringify(product, 'utf-8'));
+        if(found){
+            await fs.writeFile(this.path, JSON.stringify(products, 'utf-8', 4));
+        }
+        return found;
     }
 
     async checkProduct(product){
@@ -52,12 +54,7 @@ class ProductManager {
     async getCode(code){
         const products = await this.getProducts();
         const productFind = products.filter((product) => product.code == code);
-        console.log(productFind);
-        if(productFind.length) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!(productFind.length);
     }
 
     async getProducts(){

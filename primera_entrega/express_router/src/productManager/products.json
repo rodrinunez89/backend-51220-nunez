@@ -53,10 +53,10 @@
         "title": "jeans 3",
         "description": "blanca lisa 3",
         "price": 92,
-        "thumbnail": "sin imagen",
-        "stock": 92,
         "status": true,
+        "thumbnail": "sin imagen",
         "code": "abc06",
+        "stock": 92,
         "id": 6
     },
     {
